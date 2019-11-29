@@ -11,24 +11,32 @@
 
 ## 介绍
 
-RSSHub 是一个轻量、易于扩展的 RSS 生成器，可以给任何奇奇怪怪的内容生成 RSS 订阅源
+RSSHub 是一个开源、简单易用、易于扩展的 RSS 生成器，可以给任何奇奇怪怪的内容生成 RSS 订阅源。RSSHub 借助于开源社区的力量快速发展中，目前已适配数百家网站的上千项内容
 
-[Telegram 群](https://t.me/rsshub)
+可以配合浏览器扩展 [RSSHub Radar](https://github.com/DIYgod/RSSHub-Radar) 食用
 
-[使用文档](https://docs.rsshub.app/)
+[Telegram 群](https://t.me/rsshub) | [Telegram 频道](https://t.me/awesomeRSSHub)
 
-[English docs](https://docs.rsshub.app/en)
+[使用文档](https://docs.rsshub.app/) | [English docs](https://docs.rsshub.app/en)
 
 ## 鸣谢
 
 ### Special Sponsors
 
-<a href="https://rixcloud.app/rsshub" target="_blank"><img width="240px" src="https://i.imgur.com/qRP0eMg.png"></a>
+<div>
+<a href="https://rixcloud.app/rsshub" target="_blank"><img height="60px" src="https://i.imgur.com/TrgP3S1.png"></a>&nbsp;&nbsp;&nbsp;<a href="https://kzfeed.com/?from=rsshub" target="_blank"><img height="60px" src="https://i.imgur.com/YjqwaKE.png"></a>&nbsp;&nbsp;&nbsp;
+</div>
+<div>
+<a href="https://angelia.codeeer.com" target="_blank"><img height="60px" src="https://i.imgur.com/oQf2WJl.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://mianbaoduo.com" target="_blank"><img height="60px" src="https://i.imgur.com/vLhRKp4.jpg"></a>
+</div>
+<div>
+<a href="https://lizhi.io/store" target="_blank"><img height="60px" src="https://i.imgur.com/1u6jJ6L.jpg"></a>
+</div>
 
 ### Sponsors
 
-| [Eternal Proxy](https://proxy.eternalstudio.cn/?from=rsshub) | [Liuyang](https://github.com/lingllting) | [Sayori Studio](https://t.me/SayoriStudio) | 匿名 | [Sion Kazama](https://blog.sion.moe) |
-| :----------------------------------------------------------: | :--------------------------------------: | :----------------------------------------: | :--: | :----------------------------------: |
+| [Liuyang](https://github.com/lingllting) | [Sayori Studio](https://t.me/SayoriStudio) | 匿名 | [Sion Kazama](https://blog.sion.moe) | [琚致远](https://www.shaoyaoju.org/) | [Rolly RSS 阅读器](https://www.coolapk.com/apk/239500) |
+| :--------------------------------------: | :----------------------------------------: | :--: | :----------------------------------: | :----------------------------------: | :----------------------------------------------------: |
 
 
 [![](https://opencollective.com/static/images/become_sponsor.svg)](https://docs.rsshub.app/support/)
@@ -77,7 +85,13 @@ RSSHub 是采用 MIT 许可的开源项目，使用完全免费。 但是随着�
 -   [微信支付](https://i.loli.net/2019/03/23/5c950ebbc373e.png)
 -   [支付宝](https://i.loli.net/2019/03/23/5c950ebbc980e.png)
 
+## 周边产品
+
+也可以购买我们[官方授权的周边产品](https://telegra.ph/RSSHub-周边-08-20-2)，每售出一件周边，我们将获得售价 10% 的捐赠。
+
 ## 相关项目
+
+-   [RSSHub Radar](https://github.com/DIYgod/RSSHub-Radar): 探测当前页面可用的 RSS 和 RSSHub 的浏览器扩展
 
 -   [Easy to RSS](https://github.com/idealclover/Easy-to-RSS): 一个一键式发现当前网页 RSS 的 chrome 扩展，与 RSSHub 联动支持更多网页
 
