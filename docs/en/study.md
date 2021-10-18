@@ -4,60 +4,101 @@ pageClass: routes
 
 # Study
 
-## eLife
+## gradCafe
 
-### Latest Research
+### gradCafe result
 
-#### ALL
+<RouteEn author="liecn" example="/gradcafe/result" path="/gradcafe/result" />
 
-<RouteEn author="emdoe" example="/elife/latest" path="/elife/latest" />
+### gradCafe result by key words
 
-#### Research by Subject
+<RouteEn author="liecn" example="/gradcafe/result/computer" path="/gradcafe/result/:type" :paramsDesc="['Keyword']"/>
 
-<RouteEn author="emdoe" example="/elife/cell-biology" path="/elife/:subject" :paramsDesc="['topic name', 'obtain it from the homepage']" />
+## Great Britain China Centre
 
-## Google Scholar
+### Educational Trust
 
-### Keywords Monitoring
+<RouteEn author="HenryQW" example="/gbcc/trust" path="/gbcc/trust" />
 
-<RouteEn author="HenryQW" path="/google/scholar/:query" example="/google/scholar/data+visualization" :paramsDesc="['query statement which supports「Basic」and「Advanced」modes']" anticrawler="1">
+## iciba
 
-::: warning
+### Daily English Sentence
 
-Google Scholar has strict anti-crawling mechanism implemented, the demo below doesn't guarantee availability. Please deploy your own instance as it might increase the stability.
+<Route author="mashirozx" example="/iciba/7/poster" path="/iciba/:days?/:img_type?" :paramsDesc="['number of items to show（min = 1, max = 7, default = 1）', 'image style']">
 
-:::
+| `:img_type` | image style    |
+| ----------- | -------------- |
+| original    | Original size  |
+| medium      | Medium size    |
+| thumbnail   | Thumbnail size |
+| poster      | Art poster     |
 
-1. Basic mode, sample query is the keywords desired, eg.「data visualization」, [https://rsshub.app/google/scholar/data+visualization](https://rsshub.app/google/scholar/data+visualization).
+</Route>
 
-2. Advanced mode, visit [Google Scholar](https://scholar.google.com/schhp?hl=en&as_sdt=0,5), click the top left corner and select「Advanced Search」, fill in your conditions and submit the search. The URL should look like this: [https://scholar.google.com/scholar?as_q=data+visualization&as_epq=&as_oq=&as_eq=&as_occt=any&as_sauthors=&as_publication=&as_ylo=2018&as_yhi=&hl=en&as_sdt=0%2C5](https://scholar.google.com/scholar?as_q=data+visualization&as_epq=&as_oq=&as_eq=&as_occt=any&as_sauthors=&as_publication=&as_ylo=2018&as_yhi=&hl=en&as_sdt=0%2C5), copy everything after `https://scholar.google.com/scholar?` from the URL and use it as the query for this route. The complete URL for the above example should look like this: [https://rsshub.app/google/scholar/as_q=data+visualization&as_epq=&as_oq=&as_eq=&as_occt=any&as_sauthors=&as_publication=&as_ylo=2018&as_yhi=&hl=en&as_sdt=0%2C5](https://rsshub.app/google/scholar/as_q=data+visualization&as_epq=&as_oq=&as_eq=&as_occt=any&as_sauthors=&as_publication=&as_ylo=2018&as_yhi=&hl=en&as_sdt=0%2C5).
+## LinkResearch
+
+### theses
+
+<RouteEn author="yech1990" example="/linkresearcher/category=theses&subject=生物" path="/linkresearcher/theses/:param" supportScihub="1" :paramsDesc="['key=value，eg. subject=生物']"/>
+
+| `:param` | example         | definition                             |
+| -------- | --------------- | -------------------------------------- |
+| category | category=thesis | **one of**，theses/information/careers |
+| subject  | subject=生物    | string / undefined                     |
+| columns  | columns=健康    | string / undefined                     |
+| columns  | columns=virus   | string / undefined                     |
+
+## X-MOL
+
+### News
+
+<RouteEn author="cssxsh" example="/x-mol/news/3" path="/x-mol/news/:tag?" :paramsDesc="['数字编号，可从新闻列表URL得到。为空时从新闻主页获取新闻。']" />
+
+## XMind
+
+### Mindmap Gallery
+
+<RouteEn author="nczitzk" example="/xmind/mindmap" path="/xmind/mindmap/:lang?" :paramsDesc="['language code, all languages by default']">
+
+| English | Español | Deutsch | Français | 中文 | 日本語 |
+| ------- | ------- | ------- | -------- | ---- | ------ |
+| en      | es      | de      | fr       | zh   | jp     |
 
 </RouteEn>
 
-## Nature
+## ZhiShiFenZi
 
-### Latest Research
+### News
 
-#### Nature
+<RouteEn author="yech1990" example="/zhishifenzi/news/ai" path="/zhishifenzi/news/:type" :paramsDesc="['type，eg. ai']"/>
 
-<RouteEn author="emdoe" example="/nature/research" path="/nature/research" />
+| `:type`   | type name |
+| --------- | --------- |
+| biology   | Biology   |
+| medicine  | Medicine  |
+| ai        | AI        |
+| physics   | physics   |
+| chymistry | Chymistry |
+| astronomy | Astronomy |
+| others    | Others    |
 
-#### Nature Machine Intelligence
+> leave it blank（`/zhishifenzi/news`）to get all
 
-<RouteEn author="LogicJake" example="/nature/natmachintell/research" path="/nature/natmachintell/research" />
+### depth
 
-#### Nature Neuroscience
+<RouteEn author="yech1990" example="/zhishifenzi/depth" path="/zhishifenzi/depth" />
 
-<RouteEn author="emdoe" example="/nature/neuroscience/research" path="/nature/neuroscience/research" />
+### innovation
 
-## Proceedings of The National Academy of Sciences
+<RouteEn author="yech1990" example="/zhishifenzi/innovation/company" path="/zhishifenzi/innovation/:type" :paramsDesc="['type，eg. company']"/>
 
-### Latest Articles
+| `:type`       | type name     |
+| ------------- | ------------- |
+| ~~multiple~~  | ~~Multiple~~  |
+| company       | Company       |
+| product       | Product       |
+| technology    | Technology    |
+| ~~character~~ | ~~Character~~ |
+| policy        | Policy        |
 
-#### ALL
-
-<RouteEn author="emdoe" example="/pnas/latest" path="/pnas/latest" />
-
-#### Articles by Topic
-
-<RouteEn author="emdoe" example="/pnas/Applied Mathematics" path="/pnas/:topic" :paramsDesc="['topic name', 'obtain it from pnas.org (new research in ...)']" />
+> leave it blank（`/zhishifenzi/innovation`）to get all

@@ -1,46 +1,61 @@
-FROM node:10.15-slim
+FROM node:14-buster-slim as dep-builder
+
 LABEL MAINTAINER https://github.com/DIYgod/RSSHub/
 
-RUN apt-get update && apt-get install -yq libgconf-2-4 apt-transport-https git --no-install-recommends && apt-get clean \
-  && rm -rf /var/lib/apt/lists/*
+ARG USE_CHINA_NPM_REGISTRY=0;
+ARG PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1;
 
-ENV NODE_ENV production
-ENV TZ Asia/Shanghai
+RUN ln -sf /bin/bash /bin/sh
+
+RUN apt-get update && apt-get install -yq libgconf-2-4 apt-transport-https git dumb-init python3 build-essential --no-install-recommends
 
 WORKDIR /app
-
-COPY package.json /app
-
-ARG USE_CHINA_NPM_REGISTRY=0;
+COPY . /app
 
 RUN if [ "$USE_CHINA_NPM_REGISTRY" = 1 ]; then \
   echo 'use npm mirror'; npm config set registry https://registry.npm.taobao.org; \
   fi;
 
-ARG PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1;
+RUN npm i -g npm
 
 RUN if [ "$PUPPETEER_SKIP_CHROMIUM_DOWNLOAD" = 0 ]; then \
-  apt-get install -y wget --no-install-recommends \
-  && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-  && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
-  && apt-get update \
-  && apt-get install -y google-chrome-unstable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst ttf-freefont \
-  --no-install-recommends \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/* \
-  && apt-get purge --auto-remove -y curl \
-  && rm -rf /src/*.deb \
-  && npm install --production; \
+  unset PUPPETEER_SKIP_CHROMIUM_DOWNLOAD && npm ci ;\
   else \
-  export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true && \
-  npm install --production; \
+  export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true && npm ci ;\
   fi;
 
-ADD https://github.com/Yelp/dumb-init/releases/download/v1.2.0/dumb-init_1.2.0_amd64 /usr/local/bin/dumb-init
-RUN chmod +x /usr/local/bin/dumb-init
+RUN node scripts/docker/minify-docker.js
 
+FROM node:14-slim as app
+
+ENV NODE_ENV production
+ENV TZ Asia/Shanghai
+ARG PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1;
+
+WORKDIR /app
 COPY . /app
+COPY --from=dep-builder /app/app-minimal/node_modules /app/node_modules
+COPY --from=dep-builder /usr/bin/dumb-init /usr/bin/dumb-init
+
+RUN if [ "$PUPPETEER_SKIP_CHROMIUM_DOWNLOAD" = 0 ]; then \
+  apt-get update \
+  && apt-get install -y wget gnupg ca-certificates --no-install-recommends \
+  && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+  && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
+  && set -ex \
+  && apt-get update \
+  && apt-get install -y google-chrome-unstable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst fonts-freefont-ttf \
+  ca-certificates \
+  fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 \
+  libfontconfig1 libgbm1 libgcc1 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 \
+  libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 \
+  libxrender1 libxss1 libxtst6 lsb-release \
+  --no-install-recommends \
+  && rm -rf /var/lib/apt/lists/* \
+  && apt-get purge --auto-remove -y wget gnupg; \
+  fi;
 
 EXPOSE 1200
 ENTRYPOINT ["dumb-init", "--"]
+
 CMD ["npm", "run", "start"]
