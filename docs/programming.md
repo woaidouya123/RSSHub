@@ -266,6 +266,10 @@ GitHub 官方也提供了一些 RSS:
 
 ## LeetCode
 
+### 每日一题
+
+<Route author="AlbertCai" example="/leetcode/today" path="/leetcode/today"/>
+
 ### 文章
 
 <Route author="LogicJake" example="/leetcode/articles" path="/leetcode/articles"/>
