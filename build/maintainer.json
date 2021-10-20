@@ -847,6 +847,7 @@
     "/aisixiang/ranking/:type?/:range?": [],
     "/aisixiang/thinktank/:name/:type?": [],
     "/hackernews/:section/:type?": [],
+    "/leetcode/today": [],
     "/leetcode/articles": [],
     "/leetcode/submission/us/:user": [],
     "/leetcode/submission/cn/:user": [],
