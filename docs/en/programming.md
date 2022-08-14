@@ -186,10 +186,6 @@ Website: https://news.ycombinator.com/
 
 ## LeetCode
 
-### QuestionOfToday
-
-<RouteEn author="AlbertCai" example="/leetcode/today" path="/leetcode/today"/>
-
 ### Articles
 
 <RouteEn author="LogicJake" example="/leetcode/articles" path="/leetcode/articles"/>
