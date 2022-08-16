@@ -2031,6 +2031,9 @@
     "/leetcode/submission/:country/:user": [
         "NathanDai"
     ],
+    "/leetcode/today": [
+        "woaidouya123"
+    ],
     "/leiphone/leiphone": [
         "vlcheng"
     ],
