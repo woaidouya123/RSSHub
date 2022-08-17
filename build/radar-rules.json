@@ -1434,6 +1434,11 @@
         "docs": "https://docs.rsshub.app/social-media.html#bilibili",
         "source": "/:uid",
         "target": "/bilibili/user/bangumi/:uid"
+      },
+      {
+        "title": "当前合集",
+        "docs": "https://docs.rsshub.app/social-media.html#bilibili",
+        "source": "/:uid/channel/collectiondetail"
       }
     ],
     "manga": [
@@ -2778,6 +2783,19 @@
           "/"
         ],
         "target": "/cscse/tzgg"
+      }
+    ]
+  },
+  "csdn.net": {
+    "_name": "CSDN",
+    "blog": [
+      {
+        "title": "博客",
+        "docs": "https://docs.rsshub.app/blog.html#csdn",
+        "source": [
+          "/:user"
+        ],
+        "target": "/csdn/blog/:user"
       }
     ]
   },
@@ -8553,6 +8571,14 @@
           "/"
         ],
         "target": "/leetcode/dailyquestion/en"
+      },
+      {
+        "title": "每日一题题解",
+        "docs": "https://docs.rsshub.app/programming.html#leetcode",
+        "source": [
+          "/"
+        ],
+        "target": "/leetcode/dailyquestion/solution/en"
       }
     ]
   },
@@ -8573,6 +8599,14 @@
           "/"
         ],
         "target": "/leetcode/dailyquestion/cn"
+      },
+      {
+        "title": "每日一题题解",
+        "docs": "https://docs.rsshub.app/programming.html#leetcode",
+        "source": [
+          "/"
+        ],
+        "target": "/leetcode/dailyquestion/solution/cn"
       }
     ]
   },
